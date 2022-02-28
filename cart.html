@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body{
+        background: rgb(234,237,237);
+      }
+      #container{
+        /* border: 1px solid green; */
+        display: flex;
+      }
+      #contain1{
+        gap:20px;
+       width: 70%;
+       background-color: white;
+            /* border: 1px solid black;   */
+         margin: 10px;
+      }
+  
+    /* #contain2{
+      border: 1px solid red;
+      width: 25%;
+      height: 200px;
+     
+    } */
+   
+   
+   #name{
+       padding: 5px;
+       color:gray;
+       margin-top: 50px;
+   }
+   #innerDiv{
+       padding: 10px;
+       gap:40px;
+       margin-top: -10px;
+       color: green;  
+       /* border: 1px solid yellow; */
+   }
+ 
+   #main2{
+     display: flex;
+     gap: 50px;
+     /* border:1px solid blue; */
+   }
+   #strike{
+       text-decoration: line-through;
+   }
+  
+    
+    #btn,#btn1{
+      margin-top: 20px;
+      margin-left: 10px;
+    }
+   
+   /* @media all and (min-width:321px) and (max-width:720px) {
+       #container{
+           grid-template-columns: repeat(3,1fr);
+       }
+       
+   }
+   @media all and (min-width:50px) and (max-width:320px) {
+       #container{
+           grid-template-columns: repeat(1,1fr);
+       }
+       
+   } */
+</style>
+</head>
+<body>
+  <div id="container">
+   <div id="contain1">
+   
+   </div> 
+  </div>
+
+  
+   <h2>0</h2>
+</body>
+</html>
+<script>
+    var cartArr=JSON.parse(localStorage.getItem("cartItems")) || []
+
+    
+
+function displayData(items){
+    document.querySelector("#contain1").innerHTML="";
+
+ items.map(function(data,index,array){
+    var div=document.createElement("div")
+
+var img=document.createElement("img");
+img.setAttribute("src",data.image_url);
+
+
+var div2=document.createElement("div")
+div2.setAttribute("id","div2")
+
+var main2=document.createElement("div")
+main2.setAttribute("id","main2")
+
+// var contain11=document.createElement("div")
+// contain11.setAttribute("id","contain11")
+
+
+
+var contain2=document.createElement("div")
+contain2.setAttribute("id","contain2")
+
+
+var name=document.createElement("p");
+name.textContent=data.name;
+name.setAttribute("id","name")
+
+var innerDiv=document.createElement("div")
+innerDiv.setAttribute("id","innerDiv")
+
+var price=document.createElement("p")
+price.textContent=data.price+" - "+data.Qty;
+
+var strike=document.createElement("p")
+strike.textContent=data.strikedoffprice;
+strike.setAttribute("id","strike")
+
+var hr =document.createElement("hr")
+
+innerDiv.append(price,strike);
+
+var btn=document.createElement("button")
+btn.textContent="Add + 1";
+btn.setAttribute("id","btn")
+
+btn.addEventListener("click",function(){
+  incQty(index);
+})
+
+
+var btn1=document.createElement("button")
+btn1.textContent="Add - 1";
+btn1.setAttribute("id","btn1")
+
+btn1.addEventListener("click",function(){
+  decQty(index);
+})
+
+
+div.append(img)
+div2.append(name,innerDiv,btn,btn1)
+
+main2.append(div,div2)
+contain1.append(main2,hr)
+
+document.querySelector("#container").append(contain1, contain2);
+
+ });
+
+}
+
+function showTotal(){
+  var total=cartArr.reduce(function(acc,elem){
+    return acc+(elem.price*elem.Qty);
+},0)
+// console.log(total)
+document.querySelector("h2").innerText=total;
+}
+
+displayData(cartArr)
+showTotal()
+
+function incQty(index){
+  cartArr[index].Qty++;
+  localStorage.setItem("cartItems",JSON.stringify(cartArr));
+  displayData(cartArr);
+  showTotal()
+}
+
+
+function decQty(index){
+  cartArr[index].Qty--;
+  localStorage.setItem("cartItems",JSON.stringify(cartArr));
+  displayData(cartArr);
+  showTotal()
+}
+</script>

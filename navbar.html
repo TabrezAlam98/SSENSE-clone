@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <style>
+        #nav{
+            display: flex;
+            width: 100%;
+        }
+        #main{
+            width:60%;
+            height:50px;
+            display:flex;
+            justify-content: space-around;
+            background-color: rgb(40,116,240);
+            align-items: center;
+            color:white;
+        }
+        #home{
+            width:40%;
+            height:50px;
+            justify-content: space-around;
+            background-color: rgb(40,116,240);
+            align-items: center;
+            color:white;
+          
+          
+        }
+        /* #inputDiv{
+            width:30% ;
+            border: 1px solid yellow;
+        } */
+        input{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <div id="home">Home 
+            <!-- <input type="text"> -->
+       
+           
+        </div>
+      
+        <div id="main">
+        <div onclick="window.location.href='men.html'">Men's</div>
+        <div onclick="window.location.href='women.html'">Women's</div>
+        <div onclick="window.location.href='signUp.html'">SignUp</div>
+        <div>LogIn</div>
+        <div>cart</div>
+    </div>
+
+    </div>
+</body>
+</html>
